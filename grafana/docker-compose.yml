@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  grafana:
+    build:
+       context: .
+       args:
+         image_version: ${IMAGE_VERSION}
+    container_name: grafana
+    restart: unless-stopped
+    user: root
+    ports:
+      - 3000:3000
+    volumes:
+      - ./data:/var/lib/grafana
+      - ./config:/etc/grafana
+      - ./logs:/var/log/grafana
